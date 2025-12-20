@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Engineering Research Notes - Mohini Giri</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .page-break { page-break-before: always; }
+            @page { margin: 0.75in; }
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        
+        .document {
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-size: 16px;
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .metadata {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .metadata h1 {
+            color: white;
+            border: none;
+            margin-bottom: 15px;
+        }
+        
+        .metadata p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .author {
+            font-style: italic;
+            font-size: 18px;
+        }
+        
+        .book-ref {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+        
+        .intro-box {
+            background: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .section-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
+        
+        .insight-box {
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .insight-box strong {
+            color: #d68910;
+        }
+        
+        .reflection-box {
+            background: #e8f8f5;
+            border: 2px solid #1abc9c;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        
+        .reflection-box h3 {
+            color: #16a085;
+            margin-top: 0;
+        }
+        
+        .figure-container {
+            margin: 35px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .figure-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .figure-caption {
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+        
+        .summary-box {
+            background: #f0f3ff;
+            border: 2px solid #5865f2;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+        }
+        
+        .summary-box h2 {
+            color: #5865f2;
+            border: none;
+            padding: 0;
+            margin-top: 0;
+        }
+        
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        em {
+            color: #7f8c8d;
+        }
+        
+        .page-number {
+            text-align: center;
+            color: #95a5a6;
+            font-size: 12px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        @media print {
+            .document {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="metadata">
+            <h1>AI Engineering: Chapter 1 & 2</h1>
+            <p class="author">Research Notes & Reflections by Mohini Giri</p>
+            <p class="book-ref">Based on "AI Engineering: Building Applications with Foundation Models" by Chip Huyen</p>
+        </div>
+
+        <div class="intro-box">
+            <h3>📝 Why I Wrote This</h3>
+            <p>I spent about last week reading Chapters 1 and 2. What surprised me was not the speed, but the feeling that I could understand every word and its deeper meaning, including the math intuitions behind it. This came from my past years of learning how LLMs work under the hood.</p>
+            <p>This document is my attempt to:</p>
+            <ul>
+                <li>Break down each section step by step</li>
+                <li>Explain what the author is conveying</li>
+                <li>Add my own reflections as a builder and junior researcher</li>
+                <li>Make these ideas beginner-friendly and practical for anyone starting their AI journey</li>
+            </ul>
+            <p><strong>I am writing this like a researcher who wants to help others think clearly about AI, not just use it.</strong></p>
+        </div>
+
+        <h2><span class="section-icon">📘</span>Chapter 1: Introduction to Building AI Applications with Foundation Models</h2>
+
+        <h3>1. Scale Defines Modern AI</h3>
+        <p><strong>What the book says:</strong> The chapter opens by emphasizing that post-2020 AI is defined by <em>scale</em>—in model size, data, and compute. Models like ChatGPT or Gemini consume enormous resources.</p>
+        <p><strong>What this paragraph is about:</strong> The author sets the tone: today's AI progress is not from a single trick, but from scaling everything together.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This reframed AI for me. AI is no longer just <em>algorithms</em>—it is engineering at planetary scale. It made me realize why infrastructure and systems thinking matter so much.</p>
+        </div>
+
+        <h3>2. Model-as-a-Service Lowers the Barrier</h3>
+        <p><strong>What the book says:</strong> Only a few organizations can afford to train huge models, so they expose them as APIs for others to use.</p>
+        <p><strong>What this paragraph is about:</strong> This explains why anyone can now build AI apps without training models.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This is the real democratization of AI. The shift is from building models to building products on top of models.</p>
+        </div>
+
+        <h3>3. Rise of AI Engineering as a Discipline</h3>
+        <p><strong>What the book says:</strong> Because demand for AI apps is increasing and barriers are falling, AI engineering is emerging as a fast-growing field.</p>
+        <p><strong>What this paragraph is about:</strong> AI engineering is defined as building applications on top of readily available models.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This helped me see my career direction clearly: I am not just learning ML—I am learning how to engineer intelligence into systems.</p>
+        </div>
+
+        <h3>4. From Language Models to LLMs</h3>
+        <p><strong>What the book explains:</strong> Language models predict the next token based on context. Tokens are sub-word units. The book explains tokenization and why autoregressive models dominate generation.</p>
+        <p><strong>What this section is about:</strong> It builds intuition: LLMs are basically powerful next-token predictors.</p>
+        
+        <div class="figure-container">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Training samples illustration" style="display:none;">
+            <div style="border: 2px solid #ddd; padding: 20px; background: white;">
+                <p style="text-align: center; font-weight: bold; margin-bottom: 15px;">Table 1-1. Training samples from the sentence "I love street food." for language modeling.</p>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <thead>
+                        <tr style="background: #2c3e50; color: white;">
+                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Input (context)</th>
+                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Output (next token)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 12px; border: 1px solid #ddd;"><code>&lt;BOS&gt;</code></td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">I</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #ddd;"><code>&lt;BOS&gt;, I</code></td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">love</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 12px; border: 1px solid #ddd;"><code>&lt;BOS&gt;, I, love</code></td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">street</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #ddd;"><code>&lt;BOS&gt;, I, love, street</code></td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">food</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 12px; border: 1px solid #ddd;"><code>&lt;BOS&gt;, I, love, street, food</code></td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #ddd;"><code>&lt;BOS&gt;, I, love, street, food, .</code></td>
+                            <td style="padding: 12px; border: 1px solid #ddd;"><code>&lt;EOS&gt;</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="figure-caption">Table 1-1. Training samples from the sentence "I love street food" for language modeling. Each row shows how the model learns to predict the next token given the previous context.</p>
+        </div>
+        
+        <div class="insight-box">
+            <p><strong>My insight:</strong> I loved how this demystifies LLMs. Even ChatGPT is, at core, a completion machine powered by probability. Knowing this keeps expectations realistic.</p>
+        </div>
+
+        <h3>5. Autoregressive vs Masked Models</h3>
+        <p><strong>What the book explains:</strong></p>
+        <ul>
+            <li>Masked models fill in blanks using both sides (e.g., BERT)</li>
+            <li>Autoregressive models predict next tokens using only the past (e.g., GPT)</li>
+        </ul>
+        <p><strong>What this paragraph is about:</strong> Why generative AI today relies mostly on autoregressive models.</p>
+        
+        <div class="figure-container">
+            <div style="border: 2px solid #ddd; padding: 30px; background: white;">
+                <div style="margin-bottom: 40px; padding: 20px; border: 2px solid #3498db; background: #f0f8ff;">
+                    <h4 style="text-align: center; margin: 0 0 20px 0;">Autoregressive LM</h4>
+                    <div style="text-align: center; font-family: monospace; font-size: 18px; margin: 20px 0;">
+                        <div style="display: inline-block; padding: 10px 20px; border: 2px solid #2c3e50; background: white; margin: 5px;">Why does the chicken cross the</div>
+                        <div style="margin: 20px 0;">↓</div>
+                        <div style="display: inline-block; padding: 15px; border: 2px dashed #3498db; background: #e8f4f8;">
+                            <strong>Context</strong><br>(previous tokens only)
+                        </div>
+                        <div style="margin: 20px 0;">↓</div>
+                        <div style="display: inline-block; padding: 10px 20px; border: 2px solid #27ae60; background: #d5f4e6; font-weight: bold;">[prediction]</div>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;"><em>Unidirectional: Only uses past tokens</em></p>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 20px; border: 2px solid #e74c3c; background: #fff5f5;">
+                    <h4 style="text-align: center; margin: 0 0 20px 0;">Masked LM</h4>
+                    <div style="text-align: center; font-family: monospace; font-size: 18px; margin: 20px 0;">
+                        <div style="display: inline-block; margin: 5px;">
+                            <span style="padding: 10px; border: 2px solid #2c3e50; background: white; margin: 2px; display: inline-block;">Why does the</span>
+                            <span style="padding: 10px 20px; border: 2px solid #27ae60; background: #d5f4e6; font-weight: bold; margin: 2px; display: inline-block;">[prediction]</span>
+                            <span style="padding: 10px; border: 2px solid #2c3e50; background: white; margin: 2px; display: inline-block;">cross the road</span>
+                        </div>
+                        <div style="margin: 20px 0;">↓</div>
+                        <div style="display: inline-block; padding: 15px; border: 2px dashed #e74c3c; background: #ffe8e8;">
+                            <strong>Context</strong><br>(surrounding tokens)
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;"><em>Bidirectional: Uses both past and future tokens</em></p>
+                </div>
+            </div>
+            <p class="figure-caption">Figure 1-2. Autoregressive language models predict the next token using only previous tokens (unidirectional context). Masked language models predict missing tokens using surrounding context (bidirectional).</p>
+        </div>
+        
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This clarified why GPT-style models are better for open-ended generation and assistants.</p>
+        </div>
+
+        <h3>6. Self-Supervision: The Key to Scale</h3>
+        <p><strong>What the book says:</strong> Self-supervision allows models to learn from raw text without human labels. Each sequence provides its own training signal.</p>
+        <p><strong>What this section is about:</strong> It explains how LLMs could scale using the internet itself as data.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This is the true breakthrough. The world became the dataset. It also made me think about data limits and quality as future challenges.</p>
+        </div>
+
+        <h3>7. Bigger Models, More Capacity</h3>
+        <p><strong>What the book explains:</strong> Model size (parameters) correlates with capability, but requires more data and compute.</p>
+        <p><strong>What this paragraph is about:</strong> Why scaling laws drive the race for bigger models.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> It reminded me that scale is not just hype—it is grounded in learning capacity. But as builders, we must care about efficiency, not just size.</p>
+        </div>
+
+        <h3>8. From LLMs to Foundation Models (Multimodal)</h3>
+        <p><strong>What the book says:</strong> Foundation models go beyond text to images, video, and more. They are multimodal and general-purpose.</p>
+        <p><strong>What this section is about:</strong> A shift from task-specific models to models that can be adapted for many tasks.</p>
+        
+        <div class="figure-container">
+            <div style="border: 2px solid #ddd; padding: 30px; background: white; text-align: center;">
+                <h4 style="margin-bottom: 30px;">Multimodal Model Architecture</h4>
+                
+                <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; margin: 30px 0;">
+                    <!-- Text Tokens Input -->
+                    <div style="text-align: center;">
+                        <div style="border: 3px solid #3498db; padding: 20px; border-radius: 8px; background: #e8f4f8; min-width: 150px;">
+                            <strong>Text tokens</strong><br>
+                            <code style="font-size: 16px;">This is a</code>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 14px;">Text Input</p>
+                    </div>
+                    
+                    <!-- Visual Tokens Input -->
+                    <div style="text-align: center;">
+                        <div style="border: 3px solid #9b59b6; padding: 20px; border-radius: 8px; background: #f4ecf7; min-width: 150px;">
+                            <strong>Visual tokens</strong><br>
+                            <div style="margin-top: 10px; font-size: 40px;">🐕</div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 14px;">Image Input</p>
+                    </div>
+                </div>
+                
+                <!-- Arrow Down -->
+                <div style="font-size: 30px; margin: 20px 0;">↓</div>
+                
+                <!-- Multimodal Model Box -->
+                <div style="border: 3px solid #2c3e50; padding: 30px; border-radius: 8px; background: #ecf0f1; display: inline-block; min-width: 200px;">
+                    <strong style="font-size: 18px;">Multimodal<br>Model</strong>
+                </div>
+                
+                <!-- Arrow Down -->
+                <div style="font-size: 30px; margin: 20px 0;">↓</div>
+                
+                <!-- Output -->
+                <div style="border: 3px solid #27ae60; padding: 20px; border-radius: 8px; background: #d5f4e6; display: inline-block; min-width: 150px;">
+                    <strong style="font-size: 18px;">Next token</strong><br>
+                    <span style="font-size: 20px; margin-top: 10px; display: block;">Puppy</span>
+                </div>
+            </div>
+            <p class="figure-caption">Figure 1-3. A multimodal model can generate the next token using information from both text and visual tokens. This enables capabilities like image understanding and generation.</p>
+        </div>
+        
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This felt like moving from tools to platforms. One model, many applications.</p>
+        </div>
+
+        <h3>9. Adapting Models: Prompting, RAG, Finetuning</h3>
+        <p><strong>What the book explains:</strong> Instead of training from scratch, we adapt models using:</p>
+        <ul>
+            <li>Prompt engineering</li>
+            <li>Retrieval-Augmented Generation (RAG)</li>
+            <li>Finetuning</li>
+        </ul>
+        <p><strong>What this paragraph is about:</strong> Introducing the core toolkit of AI engineers.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This is empowering: with just good data and prompts, we can do what once took months of training.</p>
+        </div>
+
+        <h3>10. From Foundation Models to AI Engineering</h3>
+        <p><strong>What the book says:</strong> AI engineering differs from ML engineering because we adapt existing models instead of building them.</p>
+        <p>It highlights three drivers:</p>
+        <ol>
+            <li>General-purpose capabilities</li>
+            <li>Massive investments</li>
+            <li>Low entry barriers via APIs</li>
+        </ol>
+        <p><strong>What this section is about:</strong> Why this moment is perfect for AI engineering to rise.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This made me feel we are at a historical point—like early web or mobile days—but for intelligence.</p>
+        </div>
+
+        <h3>11. Use Cases and Application Patterns</h3>
+        <p><strong>What the book covers:</strong> Examples across coding, writing, education, chatbots, automation, planning, and more.</p>
+        <p><strong>What this section is about:</strong> Showing what AI is already good at, and where it fits.</p>
+        
+        <div class="figure-container">
+            <div style="border: 2px solid #ddd; padding: 30px; background: white;">
+                <h4 style="text-align: center; margin-bottom: 20px; font-size: 16px;">Average time reduction in task completion time using generative AI</h4>
+                
+                <svg width="100%" height="450" viewBox="0 0 700 450" style="background: white;">
+                    <!-- Y-axis grid lines -->
+                    <line x1="80" y1="50" x2="650" y2="50" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="80" y1="110" x2="650" y2="110" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="80" y1="170" x2="650" y2="170" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="80" y1="230" x2="650" y2="230" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="80" y1="290" x2="650" y2="290" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="80" y1="350" x2="650" y2="350" stroke="#e0e0e0" stroke-width="1"/>
+                    
+                    <!-- Axes -->
+                    <line x1="80" y1="50" x2="80" y2="350" stroke="#333" stroke-width="2"/>
+                    <line x1="80" y1="350" x2="650" y2="350" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- Y-axis labels -->
+                    <text x="65" y="55" text-anchor="end" font-size="13" fill="#333">100</text>
+                    <text x="65" y="115" text-anchor="end" font-size="13" fill="#333">80</text>
+                    <text x="65" y="175" text-anchor="end" font-size="13" fill="#333">60</text>
+                    <text x="65" y="235" text-anchor="end" font-size="13" fill="#333">40</text>
+                    <text x="65" y="295" text-anchor="end" font-size="13" fill="#333">20</text>
+                    <text x="65" y="355" text-anchor="end" font-size="13" fill="#333">0</text>
+                    
+                    <!-- Y-axis title -->
+                    <text x="20" y="200" text-anchor="middle" font-size="14" fill="#333" font-weight="bold" transform="rotate(-90 20 200)">Time reduction (%)</text>
+                    
+                    <!-- Bar 1: 45-50% (47.5% average = 142.5px height) -->
+                    <defs>
+                        <linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#5dade2;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#3498db;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="110" y="207.5" width="110" height="142.5" fill="url(#barGradient)" rx="4"/>
+                    <text x="165" y="195" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c3e50">45-50%</text>
+                    
+                    <!-- Bar 2: 35-45% (40% average = 120px height) -->
+                    <rect x="250" y="230" width="110" height="120" fill="url(#barGradient)" rx="4"/>
+                    <text x="305" y="218" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c3e50">35-45%</text>
+                    
+                    <!-- Bar 3: 20-30% (25% average = 75px height) -->
+                    <rect x="390" y="275" width="110" height="75" fill="url(#barGradient)" rx="4"/>
+                    <text x="445" y="263" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c3e50">20-30%</text>
+                    
+                    <!-- Bar 4: <10% (5% average = 15px height) -->
+                    <rect x="530" y="335" width="110" height="15" fill="url(#barGradient)" rx="4"/>
+                    <text x="585" y="323" text-anchor="middle" font-size="14" font-weight="bold" fill="#2c3e50">&lt;10%</text>
+                    
+                    <!-- X-axis labels -->
+                    <text x="165" y="375" text-anchor="middle" font-size="12" fill="#333">Code</text>
+                    <text x="165" y="390" text-anchor="middle" font-size="12" fill="#333">documentation</text>
+                    
+                    <text x="305" y="375" text-anchor="middle" font-size="12" fill="#333">Code</text>
+                    <text x="305" y="390" text-anchor="middle" font-size="12" fill="#333">generation</text>
+                    
+                    <text x="445" y="375" text-anchor="middle" font-size="12" fill="#333">Code</text>
+                    <text x="445" y="390" text-anchor="middle" font-size="12" fill="#333">refactoring</text>
+                    
+                    <text x="585" y="375" text-anchor="middle" font-size="12" fill="#333">High-complexity</text>
+                    <text x="585" y="390" text-anchor="middle" font-size="12" fill="#333">tasks</text>
+                    
+                    <!-- X-axis title -->
+                    <text x="365" y="425" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">Task categories</text>
+                </svg>
+            </div>
+            <p class="figure-caption">Figure 1-9. AI can help developers be significantly more productive, especially for simple tasks, but this applies less for highly complex tasks. Generative AI shows the greatest time reduction for code documentation (45-50%), followed by code generation (35-45%) and code refactoring (20-30%). Data by McKinsey.</p>
+        </div>
+        
+        <div class="insight-box">
+            <p><strong>My insight:</strong> The question is no longer "can we?"—it is "should we, and how responsibly?"</p>
+        </div>
+
+        <h3>12. Planning and the AI Stack</h3>
+        <p><strong>What the book introduces:</strong> Thinking about use case evaluation, expectations, maintenance, and how the AI stack is layered.</p>
+        <p><strong>What this is about:</strong> AI apps are systems, not demos.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This pushed me to think like a system designer, not just a model user.</p>
+        </div>
+
+        <div class="reflection-box">
+            <h3>🌱 Chapter 1 Reflection</h3>
+            <p><strong>Chapter 1 taught me that AI engineering is about:</strong></p>
+            <p style="font-size: 18px; text-align: center; margin: 20px 0;"><em>Turning powerful models into reliable systems that solve real problems.</em></p>
+        </div>
+
+        <div class="summary-box">
+            <h2>📋 Official Chapter 1 Summary</h2>
+            <p>This chapter served two purposes: to explain the emergence of AI engineering as a discipline, thanks to the availability of foundation models, and to give an overview of the process needed to build applications on top of these models.</p>
+            
+            <p>The chapter discussed the rapid evolution of AI in recent years, walking through notable transformations starting with the transition from language models to large language models through self-supervision. It traced how language models incorporated other data modalities to become foundation models, and how foundation models gave rise to AI engineering.</p>
+            
+            <p>The rapid growth of AI engineering is motivated by the many applications enabled by the emerging capabilities of foundation models. Despite the incredible number of AI applications already in production, we're still in the early stages of AI engineering, with countless more innovations yet to be built.</p>
+            
+            <p>Before building an application, an important yet often overlooked question is whether you should build it. This chapter discussed this question together with major considerations for building AI applications.</p>
+            
+            <p>While AI engineering is a new term, it evolved out of ML engineering, which is the overarching discipline involved with building applications with all ML models. Many principles from ML engineering are still applicable to AI engineering. However, AI engineering also brings with it new challenges and solutions.</p>
+            
+            <p>One aspect of AI engineering that is especially challenging to capture in writing is the incredible amount of collective energy, creativity, and engineering talent that the community brings. The more overwhelming a space is, the more important it is to have a framework to help us navigate it. <strong>This book aims to provide such a framework.</strong></p>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2><span class="section-icon">📘</span>Chapter 2: Understanding Foundation Models</h2>
+
+        <h4>What This Chapter Is About</h4>
+        <p>Chapter 2 zooms into how foundation models are built and why they behave the way they do—from data and architecture to alignment and sampling. It is written for builders, not theorists.</p>
+        <p><em>For me, this chapter felt like a deep revision of everything I had learned before, but now connected to real systems.</em></p>
+
+        <h3>1. Training Data</h3>
+        <p><strong>What the book explains:</strong> Models learn from massive internet-scale corpora.</p>
+        <p><strong>What this paragraph is about:</strong> Data defines behavior.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> A model's answers reflect its data worldview. Choosing a model is indirectly choosing its data philosophy.</p>
+        </div>
+
+        <h3>2. Multilingual and Domain-Specific Models</h3>
+        <p><strong>What the book says:</strong> Some models cover many languages; others specialize in domains like code or medicine.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> There is no universal best model. The real skill is matching model to problem.</p>
+        </div>
+
+        <h3>3. Architecture: Transformers</h3>
+        <p><strong>What the book covers:</strong> Transformers as the backbone enabling attention and scale.</p>
+        
+        <div class="figure-container">
+            <div style="border: 2px solid #ddd; padding: 25px; background: white;">
+                <h4 style="text-align: center; margin-bottom: 25px;">Seq2seq vs Transformer Architecture Comparison</h4>
+                
+                <!-- Seq2seq (RNN-based) -->
+                <div style="border: 3px solid #3498db; padding: 20px; margin-bottom: 30px; border-radius: 8px; background: #f0f8ff;">
+                    <h5 style="text-align: center; margin: 0 0 20px 0;">Seq2seq (RNN-based)</h5>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 20px 0;">
+                        <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">How</div>
+                        <div style="font-size: 20px;">→</div>
+                        <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">are</div>
+                        <div style="font-size: 20px;">→</div>
+                        <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">you</div>
+                        <div style="font-size: 20px;">→</div>
+                        <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">?</div>
+                        <div style="font-size: 20px;">→</div>
+                        <div style="padding: 15px; background: #3498db; color: white; font-weight: bold;">Final hidden state</div>
+                    </div>
+                    <div style="text-align: center; margin: 20px 0; font-size: 24px;">↓ ↓ ↓</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">¿</div>
+                        <div style="font-size: 20px;">→</div>
+                        <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">Como</div>
+                        <div style="font-size: 20px;">→</div>
+                        <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">estas</div>
+                        <div style="font-size: 20px;">→</div>
+                        <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">?</div>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 13px; color: #666;"><em>Sequential processing: Each token depends only on the final hidden state</em></p>
+                </div>
+                
+                <!-- Transformer -->
+                <div style="border: 3px solid #9b59b6; padding: 20px; border-radius: 8px; background: #f8f4fb;">
+                    <h5 style="text-align: center; margin: 0 0 20px 0;">Transformer (attention mechanism)</h5>
+                    <div style="margin: 20px 0;">
+                        <div style="display: flex; gap: 10px; margin-bottom: 30px; justify-content: center;">
+                            <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">How</div>
+                            <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">are</div>
+                            <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">you</div>
+                            <div style="padding: 10px 15px; border: 2px solid #2c3e50; background: white;">?</div>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 30px 0;">
+                            <div style="display: inline-block; padding: 20px; background: #e8d5f7; border-radius: 8px; border: 2px dashed #9b59b6;">
+                                <strong style="font-size: 16px;">⚡ Attention Mechanism ⚡</strong><br>
+                                <span style="font-size: 13px;">All tokens can attend to all other tokens simultaneously</span>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 30px; justify-content: center;">
+                            <div style="padding: 10px 15px; border: 2px solid #9b59b6; background: #f0e6f7;">¿</div>
+                            <div style="padding: 10px 15px; border: 2px solid #9b59b6; background: #f0e6f7;">Como</div>
+                            <div style="padding: 10px 15px; border: 2px solid #9b59b6; background: #f0e6f7;">estas</div>
+                            <div style="padding: 10px 15px; border: 2px solid #9b59b6; background: #f0e6f7;">?</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 13px; color: #666;"><em>Parallel processing: Each output token can attend to all input tokens via attention</em></p>
+                </div>
+            </div>
+            <p class="figure-caption">Figure 2-4. Seq2seq architecture versus transformer architecture. For the transformer architecture, each decoder token can attend to all relevant encoder tokens simultaneously through the attention mechanism, enabling parallel processing.</p>
+        </div>
+        
+        <div class="figure-container">
+            <div style="border: 2px solid #ddd; padding: 25px; background: white;">
+                <h4 style="text-align: center; margin-bottom: 25px;">The Attention Mechanism Visualized</h4>
+                
+                <div style="display: flex; gap: 30px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                    <!-- Left side: Mechanism flow -->
+                    <div style="border: 3px solid #3498db; padding: 20px; border-radius: 8px; background: #f0f8ff; min-width: 200px;">
+                        <h5 style="text-align: center; margin-bottom: 20px;">Attention mechanism visualized from<br>"Attention is all you need"<br>(Vaswani et al., 2018)</h5>
+                        
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                            <div style="display: flex; gap: 20px; align-items: center;">
+                                <div style="padding: 8px 15px; background: #3498db; color: white; border-radius: 4px; font-weight: bold;">Q</div>
+                                <div style="padding: 8px 15px; background: #e74c3c; color: white; border-radius: 4px; font-weight: bold;">K</div>
+                                <div style="padding: 8px 15px; background: #27ae60; color: white; border-radius: 4px; font-weight: bold;">V</div>
+                            </div>
+                            <div style="font-size: 20px;">↓</div>
+                            <div style="padding: 12px 20px; background: #e8d5f7; border-radius: 4px; border: 2px solid #9b59b6; font-weight: bold;">MatMul</div>
+                            <div style="font-size: 20px;">↓</div>
+                            <div style="padding: 12px 20px; background: #fff9e6; border-radius: 4px; border: 2px solid #f39c12;">Scale</div>
+                            <div style="font-size: 20px;">↓</div>
+                            <div style="padding: 12px 20px; background: #ffe8e8; border-radius: 4px; border: 2px solid #e74c3c;">Mask (opt.)</div>
+                            <div style="font-size: 20px;">↓</div>
+                            <div style="padding: 12px 20px; background: #e8f4f8; border-radius: 4px; border: 2px solid #3498db;">SoftMax</div>
+                            <div style="font-size: 20px;">↓</div>
+                            <div style="padding: 12px 20px; background: #e8d5f7; border-radius: 4px; border: 2px solid #9b59b6; font-weight: bold;">MatMul</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right side: In action -->
+                    <div style="border: 3px solid #27ae60; padding: 20px; border-radius: 8px; background: #f0fff4; min-width: 300px;">
+                        <h5 style="text-align: center; margin-bottom: 20px;">Attention mechanism in action:<br>computing the next token from previous tokens</h5>
+                        
+                        <div style="margin: 20px 0;">
+                            <p style="text-align: center; margin-bottom: 15px;"><strong>Previous token</strong></p>
+                            <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 20px;">
+                                <div style="padding: 8px 12px; border: 2px solid #2c3e50; background: white;">How</div>
+                                <div style="padding: 8px 12px; border: 2px solid #2c3e50; background: white;">are</div>
+                                <div style="padding: 8px 12px; border: 2px solid #2c3e50; background: white;">you</div>
+                                <div style="padding: 8px 12px; border: 2px solid #2c3e50; background: white;">?</div>
+                                <div style="padding: 8px 12px; border: 2px solid #2c3e50; background: white;">¿</div>
+                            </div>
+                            
+                            <div style="margin: 20px 0; text-align: center;">
+                                <div style="display: inline-block; padding: 15px; background: #d5f4e6; border-radius: 8px; border: 2px dashed #27ae60; margin-bottom: 10px;">
+                                    <div style="display: flex; gap: 15px; align-items: center;">
+                                        <div style="text-align: center;">
+                                            <div style="font-weight: bold; margin-bottom: 5px;">Value vector</div>
+                                            <div style="display: flex; gap: 3px;">
+                                                <div style="width: 20px; height: 50px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                                <div style="width: 20px; height: 50px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                                <div style="width: 20px; height: 50px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                            </div>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <div style="font-weight: bold; margin-bottom: 5px;">Key vector</div>
+                                            <div style="display: flex; gap: 3px;">
+                                                <div style="width: 20px; height: 50px; background: #e74c3c; border: 1px solid #c0392b;"></div>
+                                                <div style="width: 20px; height: 50px; background: #e74c3c; border: 1px solid #c0392b;"></div>
+                                                <div style="width: 20px; height: 50px; background: #e74c3c; border: 1px solid #c0392b;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="font-size: 24px; margin: 15px 0;">×</div>
+                                
+                                <div style="display: inline-block; padding: 15px; background: #e8f4f8; border-radius: 8px; border: 2px dashed #3498db;">
+                                    <div style="font-weight: bold; margin-bottom: 5px;">Query vector</div>
+                                    <div style="display: flex; gap: 3px; justify-content: center;">
+                                        <div style="width: 20px; height: 50px; background: #3498db; border: 1px solid #2874a6;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; font-size: 20px; margin: 20px 0;">↓</div>
+                            
+                            <div style="text-align: center;">
+                                <div style="display: inline-block; padding: 15px 30px; background: #fff9e6; border-radius: 8px; border: 3px solid #f39c12;">
+                                    <strong style="font-size: 18px;">Next token</strong><br>
+                                    <span style="font-size: 22px; margin-top: 8px; display: block;">Como</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="figure-caption">Figure 2-5. An example of the attention mechanism in action next to its high-level visualization from the famous transformer paper, "Attention Is All You Need" (Vaswani et al., 2017). The mechanism computes how much each token should attend to other tokens through Query, Key, and Value vectors.</p>
+        </div>
+        
+        <div class="figure-container">
+            <div style="border: 2px solid #ddd; padding: 25px; background: white;">
+                <h4 style="text-align: center; margin-bottom: 25px;">Transformer Model Weight Composition</h4>
+                
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+                    <!-- Input -->
+                    <div style="padding: 15px; border: 2px solid #2c3e50; background: #ecf0f1; border-radius: 4px;">
+                        <strong>Input</strong>
+                    </div>
+                    
+                    <div style="font-size: 24px;">→</div>
+                    
+                    <!-- Embedding -->
+                    <div style="text-align: center;">
+                        <div style="padding: 15px; border: 2px solid #3498db; background: #e8f4f8; border-radius: 4px;">
+                            <strong>Emb</strong>
+                        </div>
+                        <div style="font-size: 20px; margin-top: 5px;">↑</div>
+                        <div style="padding: 8px; border: 2px solid #95a5a6; background: #ecf0f1; border-radius: 4px; font-size: 12px;">
+                            Positional<br>emb
+                        </div>
+                    </div>
+                    
+                    <div style="font-size: 24px;">→</div>
+                    
+                    <!-- N × transformer block -->
+                    <div style="border: 3px solid #9b59b6; padding: 20px; background: #f8f4fb; border-radius: 8px;">
+                        <div style="text-align: center; font-weight: bold; margin-bottom: 15px; font-size: 14px;">N × transformer block</div>
+                        
+                        <div style="display: flex; gap: 15px;">
+                            <!-- Attention -->
+                            <div style="border: 2px solid #e74c3c; padding: 15px; background: #ffe8e8; border-radius: 4px;">
+                                <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">Attention</div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="display: grid; grid-template-columns: repeat(3, 20px); gap: 2px;">
+                                        <div style="width: 20px; height: 20px; background: #3498db; border: 1px solid #2874a6;"></div>
+                                        <div style="width: 20px; height: 20px; background: #3498db; border: 1px solid #2874a6;"></div>
+                                        <div style="width: 20px; height: 20px; background: #3498db; border: 1px solid #2874a6;"></div>
+                                    </div>
+                                    <div style="font-size: 11px; text-align: center;">Q</div>
+                                    
+                                    <div style="display: grid; grid-template-columns: repeat(3, 20px); gap: 2px;">
+                                        <div style="width: 20px; height: 20px; background: #e74c3c; border: 1px solid #c0392b;"></div>
+                                        <div style="width: 20px; height: 20px; background: #e74c3c; border: 1px solid #c0392b;"></div>
+                                        <div style="width: 20px; height: 20px; background: #e74c3c; border: 1px solid #c0392b;"></div>
+                                    </div>
+                                    <div style="font-size: 11px; text-align: center;">K</div>
+                                    
+                                    <div style="display: grid; grid-template-columns: repeat(3, 20px); gap: 2px;">
+                                        <div style="width: 20px; height: 20px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                        <div style="width: 20px; height: 20px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                        <div style="width: 20px; height: 20px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                    </div>
+                                    <div style="font-size: 11px; text-align: center;">V</div>
+                                    
+                                    <div style="display: grid; grid-template-columns: repeat(3, 20px); gap: 2px;">
+                                        <div style="width: 20px; height: 20px; background: #f39c12; border: 1px solid #d68910;"></div>
+                                        <div style="width: 20px; height: 20px; background: #f39c12; border: 1px solid #d68910;"></div>
+                                        <div style="width: 20px; height: 20px; background: #f39c12; border: 1px solid #d68910;"></div>
+                                    </div>
+                                    <div style="font-size: 11px; text-align: center;">O</div>
+                                </div>
+                            </div>
+                            
+                            <!-- MLP -->
+                            <div style="border: 2px solid #27ae60; padding: 15px; background: #d5f4e6; border-radius: 4px;">
+                                <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">MLP</div>
+                                <div style="display: flex; gap: 10px;">
+                                    <div>
+                                        <div style="display: grid; grid-template-columns: repeat(4, 18px); gap: 2px; margin-bottom: 5px;">
+                                            <div style="width: 18px; height: 18px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                            <div style="width: 18px; height: 18px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                            <div style="width: 18px; height: 18px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                            <div style="width: 18px; height: 18px; background: #27ae60; border: 1px solid #1e8449;"></div>
+                                        </div>
+                                        <div style="font-size: 11px; text-align: center;">FF1</div>
+                                    </div>
+                                    <div>
+                                        <div style="display: grid; grid-template-columns: repeat(4, 18px); gap: 2px; margin-bottom: 5px;">
+                                            <div style="width: 18px; height: 18px; background: #3498db; border: 1px solid #2874a6;"></div>
+                                            <div style="width: 18px; height: 18px; background: #3498db; border: 1px solid #2874a6;"></div>
+                                            <div style="width: 18px; height: 18px; background: #3498db; border: 1px solid #2874a6;"></div>
+                                            <div style="width: 18px; height: 18px; background: #3498db; border: 1px solid #2874a6;"></div>
+                                        </div>
+                                        <div style="font-size: 11px; text-align: center;">FF2</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="font-size: 24px;">→</div>
+                    
+                    <!-- Output layer -->
+                    <div style="padding: 15px; border: 2px solid #f39c12; background: #fff9e6; border-radius: 4px;">
+                        <strong>Output<br>layer</strong>
+                    </div>
+                    
+                    <div style="font-size: 24px;">→</div>
+                    
+                    <!-- Output -->
+                    <div style="padding: 15px; border: 2px solid #2c3e50; background: #ecf0f1; border-radius: 4px;">
+                        <strong>Output</strong>
+                    </div>
+                </div>
+                
+                <!-- Weight matrix dimensions -->
+                <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 2px solid #95a5a6;">
+                    <h5 style="margin-top: 0;">Weight matrix dimension</h5>
+                    <div style="font-family: monospace; font-size: 13px; line-height: 1.8;">
+                        <div><strong>Q, K, V, O:</strong> &nbsp; d_model × d_model</div>
+                        <div><strong>FF1:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d_model × d_ff</div>
+                        <div><strong>FF2:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d_ff × d_model</div>
+                        <div><strong>Embedding:</strong> &nbsp; V × d_model</div>
+                        <div><strong>Positional emb:</strong> C × d_model</div>
+                        <div><strong>Output:</strong> &nbsp;&nbsp;&nbsp;&nbsp; d_model × V</div>
+                    </div>
+                    <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 4px; font-size: 12px;">
+                        <strong>with</strong><br>
+                        <div style="margin-top: 8px; line-height: 1.6;">
+                            <strong>d_model:</strong> model's hidden size<br>
+                            <strong>d_ff:</strong> feedforward dimension<br>
+                            <strong>V:</strong> model's vocab size<br>
+                            <strong>C:</strong> position indices to track
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="figure-caption">Figure 2-6. A visualization of the weight composition of a transformer model. The model consists of N transformer blocks, each containing attention and MLP (feed-forward) layers. The dimensions show the relationship between model size (d_model), feedforward dimension (d_ff), vocabulary size (V), and context length (C).</p>
+        </div>
+        
+        <div class="insight-box">
+            <p><strong>My insight:</strong> It reminded me that what feels like magic is really matrix math, attention, and representations working at scale.</p>
+        </div>
+
+        <h3>4. Model Size</h3>
+        <p><strong>What the book says:</strong> More parameters usually mean more capacity.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> In practice, bigger also means slower and costlier. AI engineering is about trade-offs.</p>
+        </div>
+
+        <h3>5. Post-Training: Supervised Fine-Tuning (SFT)</h3>
+        <p><strong>What the book explains:</strong> Models are trained on instruction–response pairs to follow human intent.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This is where raw intelligence becomes helpful behavior.</p>
+        </div>
+
+        <h3>6. Preference Finetuning (RLHF / DPO)</h3>
+        <p><strong>What the book says:</strong> Models learn to prefer better answers over worse ones.</p>
+        
+        <div class="figure-container">
+            <div style="border: 2px solid #ddd; padding: 25px; background: white;">
+                <h4 style="text-align: center; margin-bottom: 30px;">Training Workflow: Pre-training, SFT, and RLHF</h4>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; align-items: stretch; flex-wrap: wrap;">
+                    <!-- Pre-training -->
+                    <div style="flex: 1; min-width: 200px; max-width: 250px;">
+                        <div style="background: #e8f4f8; padding: 15px; border-radius: 8px 8px 0 0; border: 2px solid #3498db; border-bottom: none;">
+                            <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">Low-quality data</div>
+                            <div style="background: #3498db; color: white; padding: 15px; border-radius: 4px; text-align: center;">
+                                e.g., Internet<br>data
+                            </div>
+                            <div style="text-align: center; font-style: italic; font-size: 12px; margin-top: 8px; color: #555;">Optimized for<br>completion</div>
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: #3498db; color: white; font-size: 20px;">↓</div>
+                        <div style="background: #d5f4e6; padding: 15px; text-align: center; border-radius: 4px; border: 2px solid #27ae60;">
+                            Self-supervised<br>pretraining
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: #27ae60; color: white; font-size: 20px;">↓</div>
+                        <div style="background: #fff9e6; padding: 15px; text-align: center; border-radius: 0 0 8px 8px; border: 2px solid #f39c12; border-top: none; font-weight: bold;">
+                            Pretrained<br>model
+                        </div>
+                    </div>
+                    
+                    <!-- SFT -->
+                    <div style="flex: 1; min-width: 200px; max-width: 250px;">
+                        <div style="background: #f0fff4; padding: 15px; border-radius: 8px 8px 0 0; border: 2px solid #27ae60; border-bottom: none;">
+                            <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">High-quality data</div>
+                            <div style="background: #27ae60; color: white; padding: 15px; border-radius: 4px; text-align: center;">
+                                Demonstration<br>data
+                            </div>
+                            <div style="text-align: center; font-style: italic; font-size: 12px; margin-top: 8px; color: #555;">Fine-tuned<br>for dialogue</div>
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: #27ae60; color: white; font-size: 20px;">↓</div>
+                        <div style="background: #e8f4f8; padding: 15px; text-align: center; border-radius: 4px; border: 2px solid #3498db;">
+                            Supervised<br>fine-tuning
+                        </div>
+                        <div style="text-align: center; padding: 10px; background: #3498db; color: white; font-size: 20px;">↓</div>
+                        <div style="background: #ffe8e8; padding: 15px; text-align: center; border-radius: 0 0 8px 8px; border: 2px solid #e74c3c; border-top: none; font-weight: bold;">
+                            SFT model
+                        </div>
+                    </div>
+                    
+                    <!-- RLHF -->
+                    <div style="flex: 2; min-width: 400px; border: 3px solid #9b59b6; border-radius: 8px; padding: 15px; background: #f8f4fb;">
+                        <div style="text-align: center; font-weight: bold; font-size: 16px; margin-bottom: 15px; color: #9b59b6;">RLHF</div>
+                        
+                        <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                            <!-- Human feedback column -->
+                            <div style="flex: 1;">
+                                <div style="background: #fff9e6; padding: 12px; border-radius: 8px 8px 0 0; border: 2px solid #f39c12; border-bottom: none;">
+                                    <div style="text-align: center; font-weight: bold; margin-bottom: 8px; font-size: 13px;">Human feedback</div>
+                                    <div style="background: #f39c12; color: white; padding: 12px; border-radius: 4px; text-align: center; font-size: 13px;">
+                                        Comparison<br>data
+                                    </div>
+                                    <div style="text-align: center; font-style: italic; font-size: 11px; margin-top: 6px; color: #555;">Trained to give<br>a scalar score<br>for (prompt, response)</div>
+                                </div>
+                                <div style="text-align: center; padding: 8px; background: #f39c12; color: white; font-size: 18px;">↓</div>
+                                <div style="background: #e8f4f8; padding: 12px; text-align: center; border-radius: 4px; border: 2px solid #3498db; font-size: 13px;">
+                                    Classification
+                                </div>
+                                <div style="text-align: center; padding: 8px; background: #3498db; color: white; font-size: 18px;">↓</div>
+                                <div style="background: #fff9e6; padding: 12px; text-align: center; border-radius: 0 0 8px 8px; border: 2px solid #f39c12; border-top: none; font-weight: bold; font-size: 13px;">
+                                    Reward model
+                                </div>
+                            </div>
+                            
+                            <!-- Prompts column -->
+                            <div style="flex: 1;">
+                                <div style="background: #e8d5f7; padding: 12px; border-radius: 8px 8px 0 0; border: 2px solid #9b59b6; border-bottom: none;">
+                                    <div style="background: #9b59b6; color: white; padding: 12px; border-radius: 4px; text-align: center; font-size: 13px;">
+                                        Prompts
+                                    </div>
+                                    <div style="text-align: center; font-style: italic; font-size: 11px; margin-top: 6px; color: #555;">Optimized to generate<br>responses that<br>maximize scores by<br>reward model</div>
+                                </div>
+                                <div style="text-align: center; padding: 8px; background: #9b59b6; color: white; font-size: 18px;">↓</div>
+                                <div style="background: #d5f4e6; padding: 12px; text-align: center; border-radius: 4px; border: 2px solid #27ae60; font-size: 13px;">
+                                    Reinforcement<br>learning
+                                </div>
+                                <div style="text-align: center; padding: 8px; background: #27ae60; color: white; font-size: 18px;">↓</div>
+                                <div style="background: #e8d5f7; padding: 12px; text-align: center; border-radius: 0 0 8px 8px; border: 2px solid #9b59b6; border-top: none; font-weight: bold; font-size: 13px;">
+                                    Final model
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 25px; padding: 15px; background: #f0f3ff; border-radius: 8px; border-left: 4px solid #5865f2;">
+                    <p style="margin: 0; font-size: 13px; line-height: 1.6;"><strong>Note:</strong> Figure 2-10 shows the overall workflow of pre-training, SFT, and preference finetuning, assuming you use RLHF for the last step. You can approximate how well a model aligns with human preference by determining what steps the model creators have taken.</p>
+                </div>
+            </div>
+            <p class="figure-caption">Figure 2-10. The overall training workflow with pre-training, SFT, and RLHF. The process starts with self-supervised pre-training on internet data, followed by supervised fine-tuning on high-quality demonstration data, then RLHF which involves training a reward model on comparison data and using reinforcement learning to optimize the final model.</p>
+        </div>
+        
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This explains why models sound polite and aligned. We train not just for correctness, but for human preference.</p>
+        </div>
+
+        <h3>7. Sampling: Temperature, Top-k, Top-p</h3>
+        <p><strong>What the book explains:</strong> Generation is controlled by sampling strategies over probability distributions.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> In my earlier projects, I had already implemented temperature, top-k, and top-p in code to tune creativity vs stability. Back then, they were just knobs. Now I finally see their real meaning: they directly reshape the probability distribution at inference. <strong>I used them before. Now I truly understand why they work.</strong></p>
+        </div>
+
+        <h3>8. Test-Time Compute</h3>
+        <p><strong>What the book says:</strong> Giving models more compute at inference can improve reasoning.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> Sometimes smarter answers don't need bigger models—just more thinking budget.</p>
+        </div>
+
+        <h3>9. Structured Outputs</h3>
+        <p><strong>What the book explains:</strong> Using schemas to make outputs reliable for systems.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This is where AI meets software engineering. Structure makes AI production-ready.</p>
+        </div>
+
+        <h3>10. Probabilistic Nature of AI</h3>
+        <p><strong>What the book emphasizes:</strong> Models sample—they don't know.</p>
+        <div class="insight-box">
+            <p><strong>My insight:</strong> This connected directly to entropy and distributions I studied before. It explains hallucinations and why evaluation is unavoidable.</p>
+        </div>
+
+        <div class="reflection-box">
+            <h3>🌱 Chapter 2 Reflection</h3>
+            <p><strong>This chapter made me feel:</strong></p>
+            <ul>
+                <li>I already knew these concepts—and now I know how they matter in real AI systems</li>
+                <li>It validated that my past learning about LLM math and internals is paying off</li>
+            </ul>
+        </div>
+
+        <div class="summary-box">
+            <h2>📋 Official Chapter 2 Summary</h2>
+            <p>This chapter discussed the core design decisions when building a foundation model. Since most people will be using ready-made foundation models instead of training one from scratch, the focus was on modeling factors that help you determine what models to use and how to use them.</p>
+            
+            <p>A crucial factor affecting a model's performance is its training data. Large models require a large amount of training data, which can be expensive and time-consuming to acquire. Model providers often leverage whatever data is available, leading to models that perform well on many tasks but may not include your specific task. This is why it's often necessary to curate training data to develop models targeting specific languages (especially low-resource languages) and specific domains.</p>
+            
+            <p>After sourcing the data, model development begins with architecting the model. The dominating architecture for language-based foundation models is the transformer. This chapter explored the problems that the transformer architecture was designed to address, as well as its limitations.</p>
+            
+            <p>The scale of a model can be measured by three key numbers: the number of parameters, the number of training tokens, and the number of FLOPs needed for training. The scaling law helps determine the optimal number of parameters and number of tokens given a compute budget.</p>
+            
+            <p>Due to the low quality of training data and self-supervision during pre-training, the resulting model might produce outputs that don't align with what users want. This is addressed by post-training, which consists of supervised finetuning and preference finetuning. Human preference is diverse and impossible to capture in a single mathematical formula, so existing solutions are far from foolproof.</p>
+            
+            <p>This chapter also covered sampling—the process by which a model generates output tokens. Sampling makes AI models probabilistic. This probabilistic nature is what makes models like ChatGPT and Gemini great for creative tasks and fun to talk to. However, it also causes inconsistency and hallucinations. <strong>Working with AI models requires building your workflows around their probabilistic nature.</strong></p>
+            
+            <p>The rest of this book will explore how to make AI engineering, if not deterministic, at least systematic. The first step toward systematic AI engineering is to establish a solid evaluation pipeline to help detect failures and unexpected changes.</p>
+        </div>
+
+        <div class="reflection-box" style="margin-top: 50px;">
+            <h3>🌍 Final Reflection</h3>
+            <p style="font-size: 18px; font-weight: 600; text-align: center; margin: 25px 0;">Across Chapters 1 and 2, my biggest takeaway is:</p>
+            <p style="font-size: 19px; text-align: center; font-style: italic; color: #16a085; margin: 25px 0;">
+                "AI engineering is about understanding how intelligence is built, and then engineering it into systems that help people."
+            </p>
+            <p>I hope these notes help beginners see AI not as magic, but as something they can understand, question, and build with.</p>
+            <p><strong>This is just the start of my journey</strong>, and I want to keep learning, sharing, and refining these ideas as I move forward.</p>
+        </div>
+
+        <div class="page-number">
+            End of Research Notes
+        </div>
+    </div>
+
+    <script>
+        // Add print functionality
+        window.onload = function() {
+            console.log('AI Engineering Research Notes loaded successfully');
+        };
+    </script>
+</body>
+</html>
