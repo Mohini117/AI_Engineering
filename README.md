@@ -84,7 +84,7 @@ If you’re starting your AI journey or transitioning into AI engineering, I hop
 
 ## 🚀 How to Use This Repo
 
-- Read chapter folders in order  
+- Download the html file first  
 - Skim summaries for quick revision  
 - Dive into reflections for deeper intuition  
 - Use as reference while building AI projects  
