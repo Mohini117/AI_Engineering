@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluating AI Systems: A Visual Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #ffffff;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #2563eb;
+        }
+        
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 42px;
+            color: #0f172a;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 28px;
+            color: #1e293b;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        h3 {
+            font-size: 22px;
+            color: #334155;
+            margin: 35px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-size: 18px;
+            color: #475569;
+            margin: 25px 0 12px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: #334155;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 12px;
+            margin: 35px 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .intro-box p {
+            color: white;
+            margin-bottom: 0;
+            font-size: 17px;
+        }
+        
+        .highlight-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .insight-box {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        ul {
+            margin: 20px 0 20px 30px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        .figure {
+            margin: 40px 0;
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .figure-caption {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .section-divider {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 50px 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #8b5cf6;
+            padding-left: 25px;
+            margin: 30px 0;
+            font-size: 18px;
+            color: #475569;
+            font-style: italic;
+        }
+        
+        .key-point {
+            background: #ede9fe;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .key-point strong {
+            color: #6d28d9;
+        }
+
+        .image-placeholder {
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            padding: 40px;
+            text-align: center;
+            color: #64748b;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @media print {
+            body {
+                padding: 30px;
+            }
+            
+            .figure img {
+                max-width: 100%;
+                page-break-inside: avoid;
+            }
+            
+            h2, h3 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Evaluating AI Systems</h1>
+        <p class="subtitle">A Comprehensive Visual Guide to Building Better AI Applications</p>
+    </div>
+
+    <div class="intro-box">
+        <p><strong>Evaluation is one of the hardest yet most critical aspects of AI system development.</strong> The lack of a reliable evaluation pipeline is one of the biggest blockers to real-world AI adoption. This guide will help you build the evaluation systems your AI applications need to succeed.</p>
+    </div>
+
+    <h2>The Challenge of Evaluation</h2>
+    <p>While evaluation takes time and effort, a strong evaluation pipeline pays dividends by helping teams:</p>
+    <ul>
+        <li><strong>Reduce deployment risks</strong> – catch issues before they reach production</li>
+        <li><strong>Discover opportunities</strong> to improve model performance</li>
+        <li><strong>Track progress</strong> across model versions</li>
+        <li><strong>Save time and operational headaches</strong> in the long run</li>
+    </ul>
+    <p>As AI systems grow more complex and widely deployed, evaluation is no longer optional—it's foundational.</p>
+
+    <hr class="section-divider">
+
+    <h2>The New Development Paradigm</h2>
+    <p>With the rise of foundation models, most application developers are no longer struggling to build models from scratch. Instead, <strong>the key challenge today is selecting the right model for a specific application</strong>.</p>
+    
+    <p>This shift changes everything about how we approach AI development, focusing our attention on three core pillars:</p>
+    
+    <div class="highlight-box">
+        <h4>1. Evaluation Criteria</h4>
+        <p><em>What aspects of the AI system should be judged?</em></p>
+        
+        <h4 style="margin-top: 20px;">2. Model Selection</h4>
+        <p><em>How do we choose the best model given cost, performance, and constraints?</em></p>
+        
+        <h4 style="margin-top: 20px;">3. Evaluation Pipeline</h4>
+        <p><em>How do we combine evaluation techniques into a repeatable system?</em></p>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Evaluation-Driven Development</h2>
+    <p>Inspired by test-driven development (TDD) in software engineering, evaluation-driven development follows a simple but powerful principle:</p>
+    
+    <blockquote>
+        Define how success will be measured before building or deploying the AI system.
+    </blockquote>
+    
+    <p>This approach aligns development with evaluation goals, prevents blind deployment, and enables faster iteration and safer scaling.</p>
+
+    <hr class="section-divider">
+
+    <h2>Core Evaluation Criteria</h2>
+    <p>Let's dive into what makes an AI system "good" for real-world use.</p>
+
+    <h3>1. Domain-Specific Capabilities</h3>
+    <p>Domain-specific capability measures whether a model can perform tasks required in a specific domain like SQL, medicine, or law.</p>
+
+    <h4>For Coding Domains:</h4>
+    <ul>
+        <li>Evaluated using <strong>functional correctness</strong></li>
+        <li><strong>Efficiency matters:</strong> runtime and memory usage</li>
+        <li>A SQL query may be correct but unusable if it's too slow or memory-heavy</li>
+    </ul>
+
+    <h4>For Non-Coding Domains:</h4>
+    <ul>
+        <li>Evaluated using closed-ended tasks (like multiple-choice questions)</li>
+        <li>Common metrics include accuracy and point-based scoring</li>
+    </ul>
+
+    <div class="warning-box">
+        <p><strong>Limitation:</strong> MCQs are sensitive to wording changes and poor for evaluating generation capabilities. They're good for knowledge and reasoning but don't tell the whole story.</p>
+    </div>
+
+    <h3>2. Generation Capabilities</h3>
+    <p>Modern AI systems generate open-ended text, which is harder to evaluate than structured outputs.</p>
+
+    <h4>Traditional NLP Metrics:</h4>
+    <ul>
+        <li><strong>Fluency</strong> – grammatical correctness and natural language flow</li>
+        <li><strong>Coherence</strong> – logical structure and organization</li>
+        <li><strong>Faithfulness</strong> – correctness relative to source content</li>
+    </ul>
+
+    <h4>Task-Specific Considerations:</h4>
+    <ul>
+        <li><strong>Translation</strong> → Focus on faithfulness</li>
+        <li><strong>Summarization</strong> → Relevance and coverage matter most</li>
+    </ul>
+
+    <div class="warning-box">
+        <p><strong>Emerging Challenge:</strong> AI-generated text is becoming indistinguishable from human writing, making automatic evaluation increasingly difficult, especially for low-resource languages.</p>
+    </div>
+
+    <h3>3. Instruction-Following Capabilities</h3>
+    <p>Instruction-following measures how accurately a model follows user instructions.</p>
+
+    <div class="key-point">
+        <p><strong>Why It Matters:</strong> Critical for structured outputs. Required for JSON, YAML, regex, and schema-based systems. Without good instruction-following, your structured outputs will be inconsistent and unreliable.</p>
+    </div>
+
+    <p><strong>Best Practice:</strong> Always create custom instruction-following benchmarks that include real application constraints (like YAML formatting rules).</p>
+
+    <h3>4. Factual Consistency and Hallucinations</h3>
+    <p><strong>Hallucinations</strong> occur when models make up facts, cite nonexistent sources, or invent details. While acceptable in creative tasks, they're dangerous in factual applications.</p>
+
+    <div class="figure">
+        <div class="image-placeholder">
+            <p><strong>📷 Image 1: SAFE Framework</strong></p>
+            <img src="../public/fig1.png">
+            <p style="margin-top: 10px; font-size: 13px;">The diagram shows how SAFE breaks an output into individual facts and uses a search engine to verify each fact.</p>
+        </div>
+        <p class="figure-caption">Figure 4-1. SAFE breaks an output into individual facts and then uses a search engine to verify each fact. Image adapted from Wei et al. (2024).</p>
+    </div>
+
+    <h4>Two Types of Factual Consistency:</h4>
+
+    <p><strong>Local Factual Consistency:</strong></p>
+    <ul>
+        <li>Output verified against provided context</li>
+        <li>Used in summarization, customer support chatbots, and document analysis</li>
+    </ul>
+
+    <p><strong>Global Factual Consistency:</strong></p>
+    <ul>
+        <li>Output verified against open-world knowledge</li>
+        <li>Requires information extraction and evidence validation</li>
+    </ul>
+
+    <div class="warning-box">
+        <p><strong>Challenge:</strong> Defining "factual" is difficult. Online sources may be unreliable, and the presence of evidence doesn't guarantee truth.</p>
+    </div>
+
+    <h3>5. Textual Entailment (NLI)</h3>
+    <p>Textual entailment helps check factual consistency by categorizing relationships between statements:</p>
+
+    <ul>
+        <li><strong>Entailment:</strong> "Mary likes apples" → "Mary likes fruit"</li>
+        <li><strong>Contradiction:</strong> "Mary likes apples" → "Mary hates apples"</li>
+        <li><strong>Neutral:</strong> "Mary likes apples" → "Mary likes chicken"</li>
+    </ul>
+
+    <p>Used in TruthfulQA, self-verification, and Retrieval-Augmented Generation (RAG) systems.</p>
+
+    <h3>6. Safety Evaluation</h3>
+    <p>Safety evaluation focuses on preventing harmful outputs, including:</p>
+    <ul>
+        <li>Inappropriate language</li>
+        <li>Harmful recommendations</li>
+        <li>Hate speech and violence</li>
+        <li>Stereotyping</li>
+        <li>Biased political or ideological content</li>
+    </ul>
+
+    <div class="figure">
+        <div class="image-placeholder">
+            <p><strong>📷 Image 2: Political Biases in Foundation Models</strong></p>
+              <img src="../public/fig2.png" width="500">
+            <p style="margin-top: 10px; font-size: 13px;">The chart shows how models like GPT-4, LLaMA, and others position on authoritarian-libertarian and left-right axes.</p>
+        </div>
+        <p class="figure-caption">Figure 4-3. Political and economic leanings of different foundation models (Feng et al., 2023). Studies have shown that models can be imbued with political biases depending on their training. The image is licensed under CC BY 4.0.</p>
+    </div>
+
+    <p>Safety is tightly linked with hallucinations and misinformation—both represent ways a model can produce unreliable outputs.</p>
+
+    <h3>7. Cost and Latency</h3>
+    <div class="key-point">
+        <p><strong>A model is not useful if it's too slow or too expensive.</strong> Evaluation must balance output quality, latency, and cost to find the sweet spot for your application.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Designing Your Evaluation Pipeline</h2>
+    <p>No single evaluation method is sufficient. Modern AI systems are high-dimensional, while evaluation metrics are often low-dimensional. Here's how to build a comprehensive pipeline:</p>
+
+    <div class="figure">
+        <div class="image-placeholder">
+            <p><strong>📷 Image 3: Evaluation Workflow</strong></p>
+            <img src="../public/fig3.png" width="500">
+            <p style="margin-top: 10px; font-size: 13px;">The diagram shows: Build vs buy decision → Public benchmarks and leaderboards → Private prompts and metrics → Monitoring.</p>
+        </div>
+        <p class="figure-caption">Figure 4-5. An overview of the evaluation workflow to evaluate models for your application, balancing model quality, cost and latency, and ease of use.</p>
+    </div>
+
+    <h3>Step 1: Evaluate All Components</h3>
+    <p>Real-world AI systems consist of multiple components. Evaluation can occur at the <strong>task level</strong>, <strong>turn level</strong>, or on <strong>intermediate outputs</strong>.</p>
+
+    <h3>Step 2: Create Evaluation Guidelines</h3>
+    <p>The hardest part of evaluation is defining what "good output" means. This requires experimentation, multiple generated responses, and clear scoring rubrics.</p>
+
+    <h4>Scoring Methods:</h4>
+    <ul>
+        <li><strong>Binary</strong> (0/1) – simple pass/fail</li>
+        <li><strong>Likert scales</strong> (1–5) – nuanced quality ratings</li>
+        <li><strong>Multi-valued scales</strong> (-1, 0, 1) – captures negative/neutral/positive</li>
+    </ul>
+
+    <div class="insight-box">
+        <p><strong>Remember:</strong> Metrics must be tied to business goals, not just technical performance. A technically perfect model that doesn't serve business needs is still a failure.</p>
+    </div>
+
+    <h3>Step 3: Define Evaluation Methods and Data</h3>
+    <p>Select appropriate evaluation techniques and annotate evaluation datasets. The key insight here: <strong>reuse annotated data for instruction tuning and fine-tuning</strong>. Slice data into subsets to identify weaknesses.</p>
+
+    <h3>Step 4: Evaluate the Evaluation Pipeline</h3>
+    <p>Ask yourself:</p>
+    <ul>
+        <li>Does the pipeline give the right signals?</li>
+        <li>How reliable are the metrics?</li>
+        <li>How correlated are metrics with real-world success?</li>
+        <li>What cost and latency does evaluation add?</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2>Model Selection: Finding Your Perfect Match</h2>
+    <p>Model selection is fundamentally a <strong>cost–performance optimization problem</strong>.</p>
+
+    <h4>The Process:</h4>
+    <ol>
+        <li>Identify best achievable performance</li>
+        <li>Compare models across cost-performance tradeoffs</li>
+        <li>Choose the best model within budget constraints</li>
+    </ol>
+
+    <h3>Hard vs Soft Attributes</h3>
+    
+    <p><strong>Hard Attributes</strong> (difficult or impossible to change):</p>
+    <ul>
+        <li>Hosting requirements</li>
+        <li>Deployment constraints</li>
+        <li>Privacy and security requirements</li>
+    </ul>
+
+    <p><strong>Soft Attributes</strong> (can be improved):</p>
+    <ul>
+        <li>Accuracy</li>
+        <li>Reasoning capabilities</li>
+        <li>Factual consistency</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2>Build vs Buy: A Critical Decision</h2>
+    <p>Choosing between hosting a model and using a model API depends on multiple factors:</p>
+
+    <div class="figure">
+        <div class="image-placeholder">
+            <p><strong>📷 Image 4: Inference Service Architecture</strong></p>
+             <img src="../public/fig4.png" width="500">
+            <p style="margin-top: 10px; font-size: 13px;">The diagram shows an inference service with a model inside, connected to users via API with prompt/response flows.</p>
+        </div>
+        <p class="figure-caption">Figure 4-6. An inference service runs the model and provides an interface for users to access the model.</p>
+    </div>
+
+    <ul>
+        <li><strong>Data privacy</strong> – where does your data go?</li>
+        <li><strong>Data lineage</strong> – can you track data flow?</li>
+        <li><strong>Performance</strong> – speed and quality requirements</li>
+        <li><strong>Functionality</strong> – does it have the features you need?</li>
+        <li><strong>Control</strong> – how much customization do you need?</li>
+        <li><strong>Cost</strong> – total cost of ownership</li>
+        <li><strong>On-device deployment</strong> – do you need offline capability?</li>
+    </ul>
+
+    <div class="insight-box">
+        <p>This decision is unique to every team, shaped by both technical needs and organizational preferences. There's no one-size-fits-all answer.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>The Truth About Public Benchmarks</h2>
+    <p>There are thousands of public benchmarks available, but they have serious limitations:</p>
+
+    <ul>
+        <li>Benchmarks may be contaminated by training data</li>
+        <li>Leaderboard aggregation methods are often unclear</li>
+        <li>Public benchmarks help eliminate bad models, not identify the best ones</li>
+    </ul>
+
+    <div class="figure">
+        <div class="image-placeholder">
+            <p><strong>📷 Image 5: Open vs Closed Source Model Performance</strong></p>
+             <img src="../public/fig5.png" width="500">
+            <p style="margin-top: 10px; font-size: 13px;">The chart shows performance trends over time with closed-source models (red line) and open-weight models (green line) converging.</p>
+        </div>
+        <p class="figure-caption">Figure 4-7. The gap between open source models and proprietary models is decreasing on the MMLU benchmark. Image by Maxime Labonne.</p>
+    </div>
+
+    <div class="key-point">
+        <p><strong>Key Insight:</strong> Model selection is equivalent to building a private leaderboard tailored to your application. Generic benchmarks are a starting point, not the finish line.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Embracing Imperfection</h2>
+    <p>Here's the hard truth: <strong>it's impossible to fully capture the capabilities of a high-dimensional AI system using a few metrics.</strong></p>
+
+    <p>Evaluation has biases, limitations, and tradeoffs. However, <strong>not evaluating is far worse</strong>. Combining multiple evaluation methods helps mitigate these issues and gives you a clearer picture of your system's performance.</p>
+
+    <div class="highlight-box">
+        <p>Think of evaluation like a flashlight in a dark room. It doesn't illuminate everything at once, but multiple flashlights from different angles help you see the whole picture.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Evaluation Is a Journey, Not a Destination</h2>
+    <p>Although we've covered the foundations of evaluation here, the journey doesn't end. Evaluation will appear repeatedly throughout AI development:</p>
+
+    <ul>
+        <li><strong>Retrieval and agent evaluation</strong> – how well do your agents perform?</li>
+        <li><strong>Memory, latency, and cost</strong> – monitoring production performance</li>
+        <li><strong>Data quality verification</strong> – ensuring your inputs are good</li>
+        <li><strong>User feedback</strong> in production systems – the ultimate evaluation</li>
+    </ul>
+
+    <p>The key is to start with solid evaluation foundations and continuously refine your approach as your system evolves.</p>
+
+    <hr class="section-divider">
+
+    <h2>What's Next?</h2>
+    <p>With evaluation foundations established, the next step in the AI engineering journey is <strong>model adaptation</strong>, beginning with a topic many associate with AI engineering: <strong>Prompt Engineering</strong>.</p>
+
+    <div class="intro-box" style="margin-top: 40px;">
+        <p><strong>Remember:</strong> Good evaluation isn't about finding perfect metrics—it's about building a system that gives you confidence in your AI's real-world performance. Start small, iterate often, and always tie your metrics back to business outcomes.</p>
+    </div>
+
+    
+
+</body>
+</html>
