@@ -70,6 +70,117 @@ Key themes:
 
 ---
 
+### Chapter 3 – Evaluation Methodology
+
+#### Overview
+This chapter introduces the **core methodologies for evaluating modern AI systems**, with an emphasis on **foundation models and open-ended generation**. As models become more capable, failures become more costly, making evaluation increasingly critical—and increasingly difficult.
+
+#### Why This Chapter Matters
+- Stronger models increase the risk of **catastrophic failures**
+- Open-ended generation lacks a single ground truth
+- Evaluation investments lag behind model and application development
+
+#### What This Chapter Covers
+- Why **foundation models are harder to evaluate** than traditional ML models
+- The role of **human evaluation** and why it remains essential despite scalability limits
+- Automatic evaluation techniques and where they succeed or fail
+- **Language modeling metrics**, including:
+  - Cross entropy
+  - Perplexity
+- How to interpret language modeling metrics and use them in practice
+- Approaches to evaluating open-ended outputs:
+  - Functional correctness (exact evaluation)
+  - Similarity-based metrics
+  - AI as a judge
+- Limitations of subjective metrics and judge dependency
+- **Comparative evaluation** and pairwise ranking
+- Preference signals and **preference models** used in alignment and evaluation
+
+#### Key Insights
+- Exact metrics are reliable but limited in scope
+- Subjective evaluation scales but lacks long-term stability
+- Scores from different AI judges are not directly comparable
+- Preference-based and comparative evaluation are increasingly important
+- No single evaluation method is sufficient on its own
+
+#### Takeaway
+Reliable evaluation of modern AI systems requires **combining exact evaluation, subjective judgments, comparative signals, and human feedback**.
+
+#### How This Chapter Fits
+This chapter focuses on **evaluation techniques and metrics**.  
+Chapter 4 builds on this foundation to explain **how to apply these methods in real-world AI systems**.
+
+---
+
+### Chapter 4 – Evaluating AI Systems
+
+#### Overview
+This chapter focuses on **putting evaluation into practice**. It explains how to evaluate AI systems holistically, select appropriate models, and design **reliable evaluation pipelines** that support real-world deployment and long-term improvement.
+
+#### Why This Chapter Matters
+- Lack of evaluation pipelines is a **major blocker to AI adoption**
+- The main challenge has shifted from building models to **selecting the right models**
+- Evaluation is essential for trust, safety, and scalability
+
+#### What This Chapter Covers
+- Core **evaluation criteria** for AI applications:
+  - Domain-specific capabilities
+  - Generation quality
+  - Instruction-following ability
+  - Factual consistency and hallucinations
+  - Safety
+  - Cost and latency
+- How traditional NLP metrics (fluency, coherence, faithfulness) apply to foundation models
+- **Evaluation-driven development**, inspired by test-driven development
+- Designing end-to-end **evaluation pipelines**
+- Evaluating:
+  - Individual components
+  - Intermediate outputs
+  - End-to-end task success
+- Creating evaluation guidelines and scoring rubrics
+- Aligning evaluation metrics with **business goals**
+- Evaluating the evaluation pipeline itself
+
+#### Model Selection
+- Selecting models based on **cost–performance tradeoffs**
+- Differentiating between:
+  - **Hard attributes** (difficult or impossible to change)
+  - **Soft attributes** (can be improved through prompts, tuning, or iteration)
+- Using public benchmarks to filter models—not to select the best one
+- Treating model selection as building a **private leaderboard** tailored to your application
+
+#### Build vs Buy
+- Evaluating whether to:
+  - Host models yourself
+  - Use model APIs
+- Tradeoffs across key axes:
+  - Data privacy
+  - Data lineage
+  - Performance
+  - Functionality
+  - Control
+  - Cost
+  - On-device deployment
+- Emphasizing that build vs buy decisions are **context-dependent**
+
+#### Key Insights
+- No perfect evaluation method exists
+- High-dimensional AI systems cannot be captured by a few metrics
+- Combining multiple evaluation approaches mitigates bias and limitations
+- Evaluation must be **continuous**, not one-time
+
+## How This Chapter Fits
+This chapter shows **how to operationalize evaluation methodologies** discussed in Chapter 3.  
+Evaluation continues to reappear throughout AI development, including:
+- Retrieval and agent evaluation
+- Memory, latency, and cost analysis
+- Data quality verification
+- User feedback in production systems
+
+## Transition
+With evaluation foundations in place, the next step is **model adaptation**, starting with **prompt engineering**.
+
+
 ## 🎯 Why I Built This
 
 I am documenting my learning in public to:
